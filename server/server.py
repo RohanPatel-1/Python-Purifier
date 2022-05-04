@@ -108,18 +108,19 @@ python_server = PythonLanguageServer()
 def hover(ls, params: TextDocumentPositionParams
 ) -> Optional[Hover]:
     code = doc_to_string(ls,params).strip()
-    #range = pygls_utils.current_word_range(document, params.position)
-    
     matches = code_checks(code)
     ranges = get_error_cordinates(matches)
     lsp_ranges = [Range(start=Position(line=x[0]-1, character=x[1]),end=Position(line=x[2]-1, character=x[3])) for x in ranges]
-
     for i in range(len(ranges)):
+        hover_text =  matches[i].description.content
+
         if params.position.line ==  ranges[i][0] or params.position.line ==  ranges[i][2]:
             #Hover(range = lsp_ranges[i])
             ls.show_message_log('HOVER')
-
-    return 
+            contents = MarkupContent(kind='markdown', value=hover_text)
+            document = ls.workspace.get_document(params.text_document.uri)
+            return Hover(contents=contents, range=lsp_ranges[i])
+    return
             
 # text_object:  TextDocumentItem
 @python_server.feature(DOCUMENT_HIGHLIGHT)
