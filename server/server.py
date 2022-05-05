@@ -42,7 +42,7 @@ from pygls.lsp.types import (CompletionItem, CompletionList, CompletionOptions,
                              DidCloseTextDocumentParams,
                              DidOpenTextDocumentParams, MessageType, Position,
                              Range, Registration, RegistrationParams,
-                             SemanticTokens, SemanticTokensLegend, SemanticTokensParams,
+                             SemanticTokens, SemanticTokensLegend, SemanticTokensParams, MarkupContent,
                              Unregistration, TextDocumentItem,UnregistrationParams,Hover,TextDocumentPositionParams,DocumentHighlight,DocumentHighlightParams,Position,Range,DocumentHighlightOptions,DocumentHighlightKind)
                              
 from pygls.lsp.types.basic_structures import (WorkDoneProgressBegin,
